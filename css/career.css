@@ -1,33 +1,7 @@
-co-hero:after {
-	background-image: none;
-}
-
-#fh5co-footer, #fh5co-footer::before{
-	background: none;
-}
-
-.sf-menu a{
-	font-size: 15px;
-}
-
-#fh5co-main{
-	padding-top: 0px;
-	margin-bottom: 0px;
-}
-
-#fh5co-footer::before{
-	content: none;
-}
-
-#fh5co-logo
-{
-	height: auto;
-	width: 81px;
-}
 
 .heading2{
 	background-color: #21abcd;
-	padding: 7px;
+	padding: 6px;
 	color: white;
 }
 
@@ -39,6 +13,21 @@ co-hero:after {
 	font-size: 14px;
 	text-align: left;
 	color: #8b969c;
+}
+
+.heading3{
+	text-align: center;
+	background-color: #21abcd;
+	padding: 6px;
+	font-size: 20px;
+	color: white;
+}
+
+.list-contents2{
+	font-size: 13.5px;
+	text-align: left;
+	color: #8b969c;
+	margin: 10px 0;
 }
 
 img{

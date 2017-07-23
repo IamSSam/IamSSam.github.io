@@ -55,14 +55,14 @@
                     <li>
                         <a href="index.html">Home</a>
                     </li>
+                     <li>
+                        <a href="career.html">Career</a>
+                    </li>
                     <li>
                         <a href="about.html">About</a>
                     </li>
                     <li>
-                        <a href="career.html">Career</a>
-                    </li>
-                    <li>
-                        <a href="life.html">Life</a>
+                        <a href="contact.html">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -150,16 +150,16 @@
             <div class="fh5co-spacer fh5co-spacer-md"></div>
         </div>
     </article>
-
     <hr>
+    <!-- post content -->
 
     <div class="container-fluid">
         <div class="row">
           <!-- chart.js -->
-          <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+          <div class="col-md-6 col-sm-12 col-xs-12 text-center">
             <div class="x_panel col-xs-12">
               <div class="x_title">
-                <h3> 성장 그래프 </h3>
+                <h3> Growth graph </h3>
 
                 <div class="clearfix"></div>
               </div>
@@ -168,9 +168,78 @@
               </div>
             </div>
           </div>
+
+          <div class="col-md-6 col-sm-12 col-xs-12 text-center">
+            <div class="x_panel col-xs-12">
+              <div class="x_title">
+                <h3> Skills </h3>
+
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content col-xs-12">
+                <canvas id="theChart2"></canvas>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
     <script type="text/javascript">
+        var ctx = document.getElementById("theChart2").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ["Android", "Web", "Python", "Git(cooperation)", "Patience", "Passion","English"],
+                datasets: [{
+                    data: [9, 8, 7, 10, 9, 10, 6],
+                    backgroundColor: [
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display: false,
+                },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    callbacks: {
+                       label: function(tooltipItem) {
+                              return tooltipItem.yLabel;
+                       }
+                    }
+                }
+            },
+           
+            scales: {
+               yAxes: [{
+                 display: true,
+                 scaleLabel: {
+                     display: true,
+                 },
+                 ticks: {
+                    suggestedMin: 0,
+                    suggestedMax: 10,
+                    stepSize: 1,
+                    beginAtZero: true
+                }
+              }]
+            },
+            tooltips: {
+                callbacks: {
+                   label: function(tooltipItem) {
+                          return tooltipItem.yLabel;
+                   }
+                }
+            }
+        });
+
         var ctx = document.getElementById("theChart").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -200,6 +269,16 @@
                 title:{
                     display: false,
                 },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    callbacks: {
+                       label: function(tooltipItem) {
+                              return tooltipItem.yLabel;
+                       }
+                    }
+                }
             },
             legend:{
                 labels:{

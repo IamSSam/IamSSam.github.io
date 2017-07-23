@@ -32,7 +32,26 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+      .card {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          transition: 0.3s;
+          width: 100%;
+          border-radius: 5px;
+      }
 
+      .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+      }
+
+      img {
+          border-radius: 5px 5px 0 0;
+      }
+
+      .container {
+          padding: 5px 10px;
+      }
+    </style>
 </head>
 
 <body>
@@ -56,13 +75,13 @@
                         <a href="index.html">Home</a>
                     </li>
                     <li>
-                        <a href="about.html">About</a>
-                    </li>
-                    <li>
                         <a href="career.html">Career</a>
                     </li>
                     <li>
-                        <a href="life.html">Life</a>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -89,46 +108,55 @@
     <!-- Main Content -->
     <div class="container">
         <div class="row">
-            <!-- Grid -->
-<div class="w3-row">
+          <!-- Blog entries -->
+          <div class="w3-col col-md-3 col-xs-6 l8 s12">
+            <!-- Blog entry -->
+            <div class="card w3-card-4 w3-margin w3-white">
+              <img src="img/my2.jpg" style="width:100%;">
+              <div class="container white">
+                <h4><b>Eunsik Park</b></h4>
+                <p style="font-size: 14px">Want to be a good programmer.</p>
+              </div>
+            </div>
+            <hr>
 
-<!-- Blog entries -->
-<div class="w3-col l8 s12">
-  <!-- Blog entry -->
-  <div class="w3-card-4 w3-margin w3-white">
-    <img src="img/my.jpg" style="width:20%">
-    <div class="w3-container w3-white">
-      <h4><b>Eunsik Park</b></h4>
-      <p>Hello, welcome my homepage.<br>I'm majering in Computer Science & Engineering. and my motto is above title. The good thing is good thing. This motto is inspires me. also makes me feel enthusiastic about my job. Nowadays I'm very interested in ML(maching learning) and Opensource. If you want to study with me, plz contact my e-mail. Otherwise just can be the friends. Ty :)</p>
-    </div>
-  </div>
-  <hr>
+          </div>
 
-  
-</div>
+          <div class="w3-col col-md-9 col-xs-6 l8 s12">
+            <!-- Blog entry -->
+            <div class="card w3-card-4 w3-margin w3-white">
+              <div class="container white">
+                <h4><b>Introduce myself</b></h4>
 
-<!-- Introduction menu -->
-<div class="w3-col l4">
-  <!-- Labels / tags -->
-  <div class="w3-card-2 w3-margin">
-    <div class="w3-container w3-padding">
-      <h4>Interesting Tags</h4>
-    </div>
-    <div class="w3-container w3-white">
-    <p><span class="w3-tag w3-black w3-margin-bottom">#Android </span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Git </span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Deep Learning </span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Web </span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Music(Rock & Roll) </span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Swim </span><span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Soccer </span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Movies </span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"><span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Games </span><span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#English </span> 
-    </p>
-    </div>
-  </div>
-  
-<!-- END Introduction Menu -->
-</div>
+                <p style="font-size: 17px">Hello, welcome my homepage. I'm majering in Computer Science & Engineering. and <b>my motto</b> is ... <br>The good thing is good thing. <br>This one inspires me. also makes me feel enthusiastic about my job.<br> Nowadays I'm very interested in ML(maching learning) and Opensource. <br>If you want to study with me, plz <a href="contact.html">contact my e-mail.</a> Otherwise just can be the friends. Ty :)</p>
+              </div>
+            </div>
+            <hr>
 
-<!-- END GRID -->
-</div><br>
+          </div>
         </div>
-    </div>
+        <div class="row">
 
+          <!-- Introduction menu -->
+          <div class="w3-col col-md-12 col-xs-12 l8 s12">
+            <!-- Labels / tags -->
+            <div class="card w3-card-4 w3-margin w3-white" style="padding: 3px 10px">
+              <div class="w3-container w3-padding">
+                <h4>Interesting Tags</h4>
+              </div>
+              <div class="w3-container w3-white">
+              <p><span class="w3-tag w3-black w3-margin-bottom">#Android </span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Git </span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Deep Learning </span>
+                <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Web </span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Music </span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Swim </span><span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Soccer </span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Movies </span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"><span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#Games </span><span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#English </span> 
+              </p>
+              </div>
+            </div>
+            
+          <!-- END Introduction Menu -->
+          </div>
+
+        <!-- END GRID -->
+        </div><br>
+    </div>
     <hr>
 
     <!-- Footer -->
