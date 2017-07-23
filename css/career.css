@@ -1,0 +1,46 @@
+co-hero:after {
+	background-image: none;
+}
+
+#fh5co-footer, #fh5co-footer::before{
+	background: none;
+}
+
+.sf-menu a{
+	font-size: 15px;
+}
+
+#fh5co-main{
+	padding-top: 0px;
+	margin-bottom: 0px;
+}
+
+#fh5co-footer::before{
+	content: none;
+}
+
+#fh5co-logo
+{
+	height: auto;
+	width: 81px;
+}
+
+.heading2{
+	background-color: #21abcd;
+	padding: 7px;
+	color: white;
+}
+
+.fh5co-category{
+	color: black;
+}
+
+.list-contents{
+	font-size: 14px;
+	text-align: left;
+	color: #8b969c;
+}
+
+img{
+	pointer-events: none;
+}
