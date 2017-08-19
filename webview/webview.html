@@ -2,11 +2,28 @@
 <html>
   <head>
       <meta charset="UTF-8">
+      <!-- Bootstrap -->
+      <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
       <title>네이버 지도 API - 주소로 지도 표시하기</title>
       <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=7rxySx5aIRXRGtWXULIS&submodules=geocoder"></script>
       <script src="webview.js"></script>
   </head>
   <body>
-    <div id="map" style="max-width:360px;height:400px;"></div>
+    <div class="row">
+      <div class="col-md-6">
+        asd
+      </div>
+      <div class="col-md-6">
+        asd
+      </div>
+    </div>
+    <div id="map" style="width:360px;height:640px;"></div>
+    <input id="myinput" type="text" onchange="getMapElement()">
+    <button id="mybutton" onclick="getAh()">Button</button>
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
