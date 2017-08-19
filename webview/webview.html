@@ -3,7 +3,7 @@
   <head>
       <meta charset="UTF-8">
       <!-- Bootstrap -->
-      <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
       <title>네이버 지도 API - 주소로 지도 표시하기</title>
       <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=7rxySx5aIRXRGtWXULIS&submodules=geocoder"></script>
       <script src="webview.js"></script>
@@ -11,25 +11,29 @@
   <body>
   <div class="container">
       <div class="row" style="margin:5px;">
-          <div class="dropdown clearfix col-xs-6">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width:100%">진료과목
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><a href="#">내과</a></li>
-              <li><a href="#">정형외과</a></li>
-              <li><a href="#">성형외과</a></li>
-              <li><a href="#">이비인후과</a></li>
-              <li><a href="#">피부과</a></li>
-              <li><a href="#">한의원</a></li>
-            </ul>
-          </div>
-          <div class="dropdown clearfix col-xs-6">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width:100%">주변 지하철역
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><a href="#">HTML</a></li>
-              <li><a href="#">CSS</a></li>
-              <li><a href="#">JavaScript</a></li>
+          <div class="col-md-12 col-sm-12 col-xs-12" id="select_container">
+            <ul class="nav nav-pills" role="tablist">
+              <li role="presentation" class="dropdown">
+                <select id="drop1" href="#" class="form-control dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true" onchange="setStation()">
+                  <option id="stationid" value='' selected> 주변 지하철역 </option>
+                </select>
+              </li>
+
+              <li role="presentation" class="dropdown">
+                <select id="drop2" href="#" class="form-control dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="true" onchange="setHospital()">
+                  <option id="hospitalid" value='' selected> 진료과목 </option>
+                  <option id="hospitalid1" value='' > 소아과 </option>
+                  <option id="hospitalid2" value='' > 치과 </option>
+                  <option id="hospitalid3" value='' > 안과 </option>
+                  <option id="hospitalid4" value='' > 내과 </option>
+                  <option id="hospitalid5" value='' > 외과 </option>
+                  <option id="hospitalid6" value='' > 정형외과 </option>
+                  <option id="hospitalid7" value='' > 성형외과 </option>
+                  <option id="hospitalid8" value='' > 이비인후과 </option>
+                  <option id="hospitalid9" value='' > 한방과 </option>
+                  <option id="hospitalid10" value='' > 피부과 </option>
+                </select>
+              </li>
             </ul>
           </div>
       </div>
@@ -39,8 +43,8 @@
     <button id="mybutton" onclick="getAh()">Button</button>
 
     <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

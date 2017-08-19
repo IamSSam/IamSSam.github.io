@@ -17,6 +17,16 @@ window.onload = function(){
         infowindow.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5>'+ "latitude: "+ center.lat() +"<br />longitude: "+ center.lng() +'</div>');
         infowindow.open(map, center);
     }
+
+    setStation();
+
+    naver.maps.Event.addListener(map, 'idle', function() {
+        updateMarkers(map, markers);
+    });
+
+    for (var i=0, ii=markers.length; i<ii; i++) {
+        naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
+    }
 }
 
 function onSuccessGeolocation(position) {
@@ -46,6 +56,31 @@ function onSuccessGeolocation(position) {
 
         infowindow.open(map, location);
       // do Something
+
+      var post_data = {post_data:mytest[1]};
+      $.ajax({
+        url: './php/location.php',
+        type: 'POST',
+        data: post_data,
+        dataType: 'json',
+        success: function(data) {
+          console.log(data);
+          var count = 0;
+          for(var i=0; i<data.items.length; i++){
+              var station = data.items[i].title;
+              console.log(station);
+              var select_tag = document.getElementById("drop1");
+              var new_station = document.createElement("option");
+              //new_li.setAttribute("onmousedown",setStation());
+              new_station.innerHTML = station;
+              select_tag.appendChild(new_station);
+
+          }
+        },
+        error: function(request, status, error){
+          console.log(request, status, error);
+        },
+      });
   });
 }
 
@@ -115,66 +150,62 @@ function getMapElement() {
   // var mapDiv = document.getElementById('map'); // 'map' 으로 선언해도 동일
   // var map = new naver.maps.Map(mapDiv);
 }
+var selected_station;
+var post_data;
+function setStation(){
+  var select_station = document.getElementById('drop1');
+  var selected_station = select_station.options[select_station.selectedIndex].text;
 
-function getAh(){
-  var post_data = {post_data:mytest[1]};
-  $.ajax({
-    url: './php/location.php',
-    type: 'POST',
-    data: post_data,
-    dataType: 'json',
-    success: function(data) {
-      console.log(data);
-      var count = 0;
-      for(var i=0; i<data.items.length; i++){
-          var station = data.items[i].address;
-          console.log(station);
-      }
-    },
-    error: function(request, status, error){
-      console.log(request, status, error);
-    },
-  });
+  post_data = selected_station;
+  console.log(post_data);
 }
 
+function setHospital(){
+  var select_hospital = document.getElementById('drop2');
+  var selected_hospital = select_hospital.options[select_hospital.selectedIndex].text;
+
+  post_data += " " + selected_hospital;
+  console.log(post_data);
+  getHospital();
+}
+
+var markers = [];
+var infowindows = [];
+
 function getHospital(){
-  var markers = [];
-  var infowindows = [];
-  var a = {};
-  var post_data = {post_data:mytest[1]};
+  var hospital = {hospital : post_data};
+
   $.ajax({
-    url: '../php/location.php',
+    url: './php/hospital.php',
     type: 'POST',
-    data: post_data,
+    data: hospital,
     dataType: 'json',
     success: function(data) {
-      console.log(data);
-      var count = 0;
-      for(var i=0; i<data.items.length; i++){
-        (function(i){
-          var aroundaddr = data.items[i].address;
-          naver.maps.Service.geocode({address: aroundaddr}, function(status, response) {
+      for(var i = 0; i < data.items.length; i++){
+        var count=0;
+        (function(i) {
+          var around_hospital = data.items[i].address;
+          naver.maps.Service.geocode({address: around_hospital}, function(status, response) {
             var result = response.result;
             var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
-            // naver.maps.marker
-            a[data.items[i].title] = [result.items[0].point.x, result.items[0].point.y];
-            if(++count == i)
+
+            var posi = myaddr;
+            var marker  = new naver.maps.Marker({
+                map : map,
+                title : data.items[i].title,
+                position : posi,
+            });
+            var infowindow = new naver.maps.InfoWindow({
+                content : '<div style="width:150px;text-align:center;padding:10px;"><b>"'+ data.items[i].title +'"</b>.</div>'
+            });
+            markers.push(marker);
+            infowindows.push(infowindow);
+
+            if(++count == data.items.length)
             {
-              for (var k in a) {
-                var posi = new naver.maps.Point(a[k][0],a[k][1]);
-                var marker  = new naver.maps.Marker({
-                    title : k,
-                    position : posi,
-                    map : map
-                });
-                var infowindow = new naver.maps.InfoWindow({
-                    content : '<div style="width:150px;text-align:center;padding:10px;"><b>"'+ k +'"</b>.</div>'
-                });
-                markers.push(marker);
-                infowindows.push(infowindow);
-              }
-              console.log(markers);
-              console.log(infowindows);
+              naver.maps.Event.addListener(map, 'idle', function() {
+                  updateMarkers(map, markers);
+              });
             }
           });
         })(i);
@@ -184,4 +215,42 @@ function getHospital(){
       console.log(request, status, error);
     },
   });
+}
+
+function updateMarkers(map, markers) {
+    var mapBounds = map.getBounds();
+    var marker, position;
+    for (var i = 0; i < markers.length; i++) {
+        marker = markers[i]
+        position = marker.getPosition();
+        if (mapBounds.hasLatLng(position)) {
+            showMarker(map, marker);
+        } else {
+            hideMarker(map, marker);
+        }
+    }
+}
+
+function showMarker(map, marker) {
+    if (marker.setMap()) return;
+    marker.setMap(map);
+}
+
+function hideMarker(map, marker) {
+    if (!marker.setMap()) return;
+    marker.setMap(null);
+}
+
+// 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
+function getClickHandler(seq) {
+    return function(e) {
+        var marker = markers[seq],
+            infoWindow = infowindows[seq];
+
+        if (infoWindow.getMap()) {
+            infoWindow.close();
+        } else {
+            infoWindow.open(map, marker);
+        }
+    }
 }
