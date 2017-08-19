@@ -60,7 +60,7 @@ function onSuccessGeolocation(position) {
       var post_data = {post_data:mytest[1]};
       $.ajax({
         url: './php/location.php',
-        type: 'POST',
+        method: 'POST',
         data: post_data,
         dataType: 'json',
         success: function(data) {
