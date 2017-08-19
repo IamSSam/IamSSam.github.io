@@ -130,6 +130,30 @@ function getAh(){
       console.log(data);
       var count = 0;
       for(var i=0; i<data.items.length; i++){
+          var station = data.items[i].address;
+          console.log(station);
+      }
+    },
+    error: function(request, status, error){
+      console.log(request, status, error);
+    },
+  });
+}
+
+function getHospital(){
+  var markers = [];
+  var infowindows = [];
+  var a = {};
+  var post_data = {post_data:mytest[1]};
+  $.ajax({
+    url: '../php/location.php',
+    type: 'POST',
+    data: post_data,
+    dataType: 'json',
+    success: function(data) {
+      console.log(data);
+      var count = 0;
+      for(var i=0; i<data.items.length; i++){
         (function(i){
           var aroundaddr = data.items[i].address;
           naver.maps.Service.geocode({address: aroundaddr}, function(status, response) {

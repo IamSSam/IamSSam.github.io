@@ -5,7 +5,7 @@
   header('Access-Control-Allow-Methods: GET, POST, PUT');
 
   // json response array
-  $locate = $_POST['post_data']." 주변 지하철역";
+  $locate = $_POST['post_data'];
   $client_id = "7rxySx5aIRXRGtWXULIS";
   $client_secret = "JGkB8R8zo5";
   $encText = urlencode($locate);
