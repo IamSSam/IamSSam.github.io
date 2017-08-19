@@ -29,6 +29,7 @@ function onSuccessGeolocation(position) {
       if (status !== naver.maps.Service.Status.OK) {
           return alert('Something wrong!');
       }
+      console.log(response);
       var result = response.result, // 검색 결과의 컨테이너
           items = result.items; // 검색 결과의 배열
         for(var i=0; i<items.length; i++)
@@ -41,6 +42,7 @@ function onSuccessGeolocation(position) {
 
         infowindow.setContent('<div style="padding:20px;">' +
            mytest[1]+'</div>');
+
 
         infowindow.open(map, location);
       // do Something
@@ -115,14 +117,47 @@ function getMapElement() {
 }
 
 function getAh(){
+  var markers = [];
+  var infowindows = [];
+  var a = {};
   var post_data = {post_data:mytest[1]};
   $.ajax({
     url: '../php/location.php',
     type: 'POST',
     data: post_data,
     dataType: 'json',
-    success: function(data){
-      console.log("asdasd: " + data);
+    success: function(data) {
+      console.log(data);
+      var count = 0;
+      for(var i=0; i<data.items.length; i++){
+        (function(i){
+          var aroundaddr = data.items[i].address;
+          naver.maps.Service.geocode({address: aroundaddr}, function(status, response) {
+            var result = response.result;
+            var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
+            // naver.maps.marker
+            a[data.items[i].title] = [result.items[0].point.x, result.items[0].point.y];
+            if(++count == i)
+            {
+              for (var k in a) {
+                var posi = new naver.maps.Point(a[k][0],a[k][1]);
+                var marker  = new naver.maps.Marker({
+                    title : k,
+                    position : posi,
+                    map : map
+                });
+                var infowindow = new naver.maps.InfoWindow({
+                    content : '<div style="width:150px;text-align:center;padding:10px;"><b>"'+ k +'"</b>.</div>'
+                });
+                markers.push(marker);
+                infowindows.push(infowindow);
+              }
+              console.log(markers);
+              console.log(infowindows);
+            }
+          });
+        })(i);
+      }
     },
     error: function(request, status, error){
       console.log(request, status, error);
