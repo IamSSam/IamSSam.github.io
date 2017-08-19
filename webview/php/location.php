@@ -1,7 +1,10 @@
 <?php
   Auth::routes();
   Route::post('post/add', 'PostsController@add')->middleware('auth');
-
+  Route::post('post/add', function() {
+    return 'Post added';
+  });
+  
   header("Content-Type:application/json; charset=utf-8");
   header('Access-Control-Allow-Origin: *');
   header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
