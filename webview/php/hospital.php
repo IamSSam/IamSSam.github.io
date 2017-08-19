@@ -5,7 +5,8 @@
   header('Access-Control-Allow-Methods: GET, POST, PUT');
 
   // json response array
-  $locate = $_POST['post_data'];
+  $locate = $_POST['hospital']."";
+
   $client_id = "7rxySx5aIRXRGtWXULIS";
   $client_secret = "JGkB8R8zo5";
   $encText = urlencode($locate);
