@@ -1,12 +1,13 @@
-var map = new naver.maps.Map('map', {
-    center: new naver.maps.LatLng(37.5666805, 126.9784147),
-    zoom: 5,
-    mapTypeId: naver.maps.MapTypeId.NORMAL
-});
+var map;
 
 var infowindow = new naver.maps.InfoWindow();
 
 window.onload = function(){
+  map = new naver.maps.Map('map', {
+      center: new naver.maps.LatLng(37.5666805, 126.9784147),
+      zoom: 5,
+      mapTypeId: naver.maps.MapTypeId.NORMAL
+  });
   if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
     } else {
