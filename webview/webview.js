@@ -122,7 +122,7 @@ function getAh(){
   var a = {};
   var post_data = {post_data:mytest[1]};
   $.ajax({
-    url: '../php/location.php',
+    url: 'php/location.php',
     type: 'POST',
     data: post_data,
     dataType: 'json',
